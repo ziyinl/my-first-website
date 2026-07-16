@@ -2,17 +2,136 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的第一個網站</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>照片下載系統</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 30px;
+      background-color: #f4f6f8;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 35px;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+    }
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #2867b2;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1f518f;
+    }
+
+    #result {
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+
+    .download-button {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background-color: #26854c;
+      color: white;
+      text-decoration: none;
+    }
+
+    .error {
+      color: #c62828;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>你好，我的第一個 GitHub 網站！</h1>
-  <h1>東海大學智慧計算暨應用數學系</h1>
-  <p>這是我第一次使用 GitHub 建立網頁。</p>
-  <p>這是我的網站測試頁面。</p>
-  <button onclick="alert('按鈕成功！')">
-    點我測試
-  </button>
+  <div class="container">
+    <h1>照片下載系統</h1>
+
+    <p>請輸入姓名查詢自己的照片</p>
+
+    <input
+      type="text"
+      id="nameInput"
+      placeholder="例如：王小明"
+    >
+
+    <button onclick="searchPhoto()">
+      查詢照片
+    </button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function searchPhoto() {
+      const nameInput = document.getElementById("nameInput");
+      const result = document.getElementById("result");
+
+      const name = nameInput.value.trim();
+
+      if (name === "") {
+        result.innerHTML =
+          '<p class="error">請先輸入姓名。</p>';
+
+        return;
+      }
+
+      if (name === "王小明") {
+        result.innerHTML = `
+          <p>找到王小明的照片！</p>
+
+          <a
+            class="download-button"
+            href="sample-photo.jpg"
+            download
+          >
+            下載照片
+          </a>
+        `;
+      } else {
+        result.innerHTML =
+          '<p class="error">查無此姓名，請重新確認。</p>';
+      }
+    }
+  </script>
 </body>
 </html>
